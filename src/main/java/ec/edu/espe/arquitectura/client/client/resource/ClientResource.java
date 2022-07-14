@@ -1,9 +1,5 @@
 package ec.edu.espe.arquitectura.client.client.resource;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +16,15 @@ public class ClientResource {
     
     public ClientResource(ClientService service) {
         this.service = service;
+    }
+
+    @GetMapping( path = "/add")
+    public ResponseEntity addProduct() {
+        Cliente cliente = new Cliente();
+        cliente.setCedula("1726434507");
+        cliente.setNombreCompleto("Omar Mejia");
+        cliente.setEstado("ACT");
+        this.service.addCliente(cliente);
+        return ResponseEntity.ok().build();
     }
 }
